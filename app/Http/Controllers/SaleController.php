@@ -76,8 +76,11 @@ class SaleController extends Controller
         try {
             $userId = auth()->user()->id;
 
+            // Product price excluded
             $sales = Sale::where('user_id', $userId)
-                ->with('orders.product')
+                ->with(['orders.product' => function ($query) {
+                    $query->select('id', 'name', 'description');
+                }])
                 ->get();
 
             return response()->json([
