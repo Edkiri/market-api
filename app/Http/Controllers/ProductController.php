@@ -54,12 +54,21 @@ class ProductController extends Controller
     public function findAll()
     {
         try {
-            $products = Product::get();
+            $perPage = 10;
+
+            $productsPage = Product::paginate($perPage, ['*'], 'page');
+
+            $previousPageUrl = $productsPage->previousPageUrl();
+            $nextPageUrl = $productsPage->nextPageUrl();
+            $lastPage = $productsPage->lastPage();
 
             return response()->json([
                 'success' => true,
                 'data' => [
-                    'products' => $products,
+                    'products' => $productsPage->items(),
+                    'previous_page_url' => $previousPageUrl,
+                    'next_page_url' => $nextPageUrl,
+                    'last_page' => $lastPage,
                 ]
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {

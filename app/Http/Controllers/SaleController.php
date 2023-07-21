@@ -102,7 +102,7 @@ class SaleController extends Controller
     public function findAll()
     {
         try {
-            $perPage = 5;
+            $perPage = 10;
 
             $salesPage = Sale::with(['orders.product' => function ($query) {
                 $query->select('id', 'name', 'description');
