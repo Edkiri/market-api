@@ -14,4 +14,5 @@ Route::get('user/my-profile', [UserController::class, 'getProfile'])->middleware
 Route::put('user', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
 
 // Categories
+Route::get('category', [CategoryController::class, 'findAll']);
 Route::post('category', [CategoryController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
