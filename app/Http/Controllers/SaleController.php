@@ -70,4 +70,29 @@ class SaleController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function findByUser()
+    {
+        try {
+            $userId = auth()->user()->id;
+
+            $sales = Sale::where('user_id', $userId)
+                ->with('orders.product')
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'sales' => $sales,
+                ]
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error while finding user sales' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
