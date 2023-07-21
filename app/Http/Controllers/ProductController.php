@@ -50,4 +50,25 @@ class ProductController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function findAll()
+    {
+        try {
+            $products = Product::get();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'products' => $products,
+                ]
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error getting products' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -19,4 +19,5 @@ Route::get('category', [CategoryController::class, 'findAll']);
 Route::post('category', [CategoryController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
 
 // Products
+Route::get('product', [ProductController::class, 'findAll']);
 Route::post('product', [ProductController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
