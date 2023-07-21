@@ -24,5 +24,8 @@ Route::get('product', [ProductController::class, 'findAll']);
 Route::post('product', [ProductController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
 
 // Sales
-Route::post('sale', [SaleController::class, 'create'])->middleware(['auth:sanctum']);
 Route::get('sale', [SaleController::class, 'findByUser'])->middleware(['auth:sanctum']);
+Route::post('sale', [SaleController::class, 'create'])->middleware(['auth:sanctum']);
+
+// Admin
+Route::get('admin/sale', [SaleController::class, 'findAll'])->middleware(['auth:sanctum', 'is-admin']);

@@ -98,4 +98,38 @@ class SaleController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function findAll()
+    {
+        try {
+            $perPage = 5;
+
+            $salesPage = Sale::with(['orders.product' => function ($query) {
+                $query->select('id', 'name', 'description');
+            }])
+                ->paginate($perPage, ['*'], 'page');
+
+            $previousPageUrl = $salesPage->previousPageUrl();
+            $nextPageUrl = $salesPage->nextPageUrl();
+            $lastPage = $salesPage->lastPage();
+
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'sales' => $salesPage->items(),
+                    'previous_page_url' => $previousPageUrl,
+                    'next_page_url' => $nextPageUrl,
+                    'last_page' => $lastPage,
+                ]
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error while finding user sales' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
