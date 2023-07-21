@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 
 // Auth
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -21,3 +22,6 @@ Route::post('category', [CategoryController::class, 'create'])->middleware(['aut
 // Products
 Route::get('product', [ProductController::class, 'findAll']);
 Route::post('product', [ProductController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
+
+// Sales
+Route::post('sale', [SaleController::class, 'create'])->middleware(['auth:sanctum']);
