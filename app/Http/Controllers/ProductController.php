@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     public function create(Request $req)
     {
@@ -17,6 +17,9 @@ class CategoryController extends Controller
 
             $validator = Validator::make($req->all(), [
                 'name' => ['required', 'string', 'min:4', 'unique:categories,name'],
+                'description' => ['required', 'string', 'min:4'],
+                'price' => ['required', 'numeric', 'gt:0'],
+                'category_id' => ['required', 'int'],
             ]);
 
             if ($validator->fails()) {
@@ -25,39 +28,21 @@ class CategoryController extends Controller
 
             $validData = $validator->validated();
 
-            $newCategory = Category::create([
+            $newProduct = Product::create([
                 'name' => $validData['name'],
+                'description' => $validData['description'],
+                'price' => $validData['price'],
+                'category_id' => $validData['category_id'],
             ]);
 
             return response()->json([
                 'success' => true,
                 'data' => [
-                    'category' => $newCategory,
+                    'category' => $newProduct,
                 ]
             ], Response::HTTP_CREATED);
         } catch (\Throwable $th) {
-            Log::error('Error creating category' . $th->getMessage());
-
-            return response()->json([
-                'success' => false,
-                'message' => $th->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    public function findAll()
-    {
-        try {
-            $categories = Category::get();
-
-            return response()->json([
-                'success' => true,
-                'data' => [
-                    'categories' => $categories,
-                ]
-            ], Response::HTTP_OK);
-        } catch (\Throwable $th) {
-            Log::error('Error getting categories' . $th->getMessage());
+            Log::error('Error creating product' . $th->getMessage());
 
             return response()->json([
                 'success' => false,

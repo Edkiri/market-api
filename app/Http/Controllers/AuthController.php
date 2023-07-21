@@ -9,7 +9,7 @@ use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -53,7 +53,7 @@ class AuthController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     public function login(Request $req)
     {
         try {
@@ -68,7 +68,9 @@ class AuthController extends Controller
 
             $user = User::where('email', $validData['email'])->first();
 
-            if (!$user) {
+            $validPassword = Hash::check($validData['password'], $user->password);
+
+            if (!$user || !$validPassword) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Email or password incorrect'

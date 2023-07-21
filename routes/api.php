@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 // Auth
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -16,3 +17,6 @@ Route::put('user', [UserController::class, 'updateProfile'])->middleware('auth:s
 // Categories
 Route::get('category', [CategoryController::class, 'findAll']);
 Route::post('category', [CategoryController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
+
+// Products
+Route::post('product', [ProductController::class, 'create'])->middleware(['auth:sanctum', 'is-admin']);
