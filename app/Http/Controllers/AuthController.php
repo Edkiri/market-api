@@ -68,9 +68,16 @@ class AuthController extends Controller
 
             $user = User::where('email', $validData['email'])->first();
 
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email or password incorrect'
+                ], Response::HTTP_FORBIDDEN);
+            }
+
             $validPassword = Hash::check($validData['password'], $user->password);
 
-            if (!$user || !$validPassword) {
+            if (!$validPassword) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Email or password incorrect'
