@@ -16,10 +16,11 @@ class ProductController extends Controller
         try {
 
             $validator = Validator::make($req->all(), [
-                'name' => ['required', 'string', 'min:4', 'unique:categories,name'],
+                'name' => ['required', 'string', 'min:4', 'unique:products,name'],
                 'description' => ['required', 'string', 'min:4'],
                 'price' => ['required', 'numeric', 'gt:0'],
                 'category_id' => ['required', 'int'],
+                'image_key' => ['required', 'string'],
             ]);
 
             if ($validator->fails()) {
@@ -33,6 +34,7 @@ class ProductController extends Controller
                 'description' => $validData['description'],
                 'price' => $validData['price'],
                 'category_id' => $validData['category_id'],
+                'image_key' => $validData['image_key'],
             ]);
 
             return response()->json([
