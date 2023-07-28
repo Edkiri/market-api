@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Plátanos maduros y dulces',
                 'price' => 1.25,
                 'category_id' => 1,
-                'image_key' => "products-image/Platanos.jpg"
+                'image_key' => "products-image/Platanos.webp"
             ],
             [
                 'name' => 'Tomates',
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Sandía jugosa y refrescante',
                 'price' => 3.99,
                 'category_id' => 1,
-                'image_key' => "products-image/Sandia.jpg"
+                'image_key' => "products-image/Sandia.webp"
             ],
             [
                 'name' => 'Frijoles enlatados',
@@ -106,7 +106,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Atún enlatado en agua',
                 'price' => 2.49,
                 'category_id' => 3,
-                'image_key' => "products-image/Atun-enlatado.jpg"
+                'image_key' => "products-image/Atun-enlatado.webp"
             ],
             [
                 'name' => 'Puré de patatas enlatado',
@@ -155,7 +155,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Té verde orgánico',
                 'price' => 1.75,
                 'category_id' => 4,
-                'image_key' => "products-image/Te-verde.jpg"
+                'image_key' => "products-image/Te-verde.webp"
             ],
             [
                 'name' => 'Café molido',
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Jabón en barra multiusos',
                 'price' => 1.25,
                 'category_id' => 5,
-                'image_key' => "products-image/Jabon-en-barra.jpg"
+                'image_key' => "products-image/Jabon-en-barra.webp"
             ],
             [
                 'name' => 'Limpiavidrios',
@@ -225,7 +225,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Esponjas de cocina para lavar platos',
                 'price' => 1.75,
                 'category_id' => 5,
-                'image_key' => "products-image/Esponjas-para-lavar-platos.jpg"
+                'image_key' => "products-image/Esponjas-para-lavar-platos.webp"
             ],
             [
                 'name' => 'Desinfectante multiusos',
@@ -253,7 +253,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Desodorante de ambiente en aerosol',
                 'price' => 2.49,
                 'category_id' => 5,
-                'image_key' => "products-image/Desodorante-de-ambiente.jpg"
+                'image_key' => "products-image/Desodorante-de-ambiente.webp"
             ],
             [
                 'name' => 'Escoba',

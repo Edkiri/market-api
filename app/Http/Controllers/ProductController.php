@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function findAll()
     {
         try {
-            $perPage = 10;
+            $perPage = 8;
 
             $productsPage = Product::paginate($perPage, ['*'], 'page');
 

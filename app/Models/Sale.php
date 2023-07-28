@@ -22,6 +22,7 @@ class Sale extends Model
     protected $fillable = [
         'address',
         'user_id',
-        'is_finished'
+        'is_finished',
+        'phone'
     ];
 }

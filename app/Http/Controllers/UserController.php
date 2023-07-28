@@ -39,6 +39,7 @@ class UserController extends Controller
 
             $validator = Validator::make($req->all(), [
                 'name' => ['string', 'min:4'],
+                'image_key' => ['string', 'min:1'],
             ]);
 
             if ($validator->fails()) {
@@ -49,6 +50,9 @@ class UserController extends Controller
 
             if (isset($validData['name'])) {
                 $user->name = $validData['name'];
+            }
+            if (isset($validData['image_key'])) {
+                $user->image_key = $validData['image_key'];
             }
 
             $user->save();

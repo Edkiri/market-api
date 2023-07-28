@@ -22,6 +22,7 @@ class SaleController extends Controller
 
             $validator = Validator::make($req->all(), [
                 'address' => ['required', 'string', 'min:4'],
+                'phone' => ['required', 'string'],
                 'orders' => ['required', 'array'],
                 'orders.*.product_id' => ['required', 'integer', 'exists:products,id'],
                 'orders.*.quantity' => ['required', 'integer', 'min:1'],
@@ -37,6 +38,7 @@ class SaleController extends Controller
 
             $newSale = Sale::create([
                 'address' => $validData['address'],
+                'phone' => $validData['phone'],
                 'user_id' => $userId,
             ]);
 
