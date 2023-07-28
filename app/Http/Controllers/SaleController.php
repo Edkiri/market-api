@@ -25,7 +25,7 @@ class SaleController extends Controller
                 'phone' => ['required', 'string'],
                 'orders' => ['required', 'array'],
                 'orders.*.product_id' => ['required', 'integer', 'exists:products,id'],
-                'orders.*.quantity' => ['required', 'integer', 'min:1'],
+                'orders.*.quantity' => ['required', 'integer', 'min:1']
             ]);
 
             if ($validator->fails()) {
@@ -40,6 +40,7 @@ class SaleController extends Controller
                 'address' => $validData['address'],
                 'phone' => $validData['phone'],
                 'user_id' => $userId,
+                'status' => 'pending',
             ]);
 
             foreach ($validData['orders'] as $orderData) {

@@ -23,6 +23,7 @@ class Sale extends Model
         'address',
         'user_id',
         'is_finished',
-        'phone'
+        'phone',
+        'status'
     ];
 }
