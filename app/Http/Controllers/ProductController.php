@@ -53,12 +53,24 @@ class ProductController extends Controller
         }
     }
 
-    public function findAll()
+    public function findAll(Request $request)
     {
         try {
             $perPage = 8;
+            $category_id = $request->input('category_id');
+            $name = $request->input('name');
+            
+            $query = Product::query();
 
-            $productsPage = Product::paginate($perPage, ['*'], 'page');
+            if ($name) {
+                $query->where('name', 'LIKE', '%' . $name . '%');
+            }
+            
+            if ($category_id) {
+                $query->where('category_id', $category_id);
+            }
+
+            $productsPage = $query->paginate($perPage, ['*'], 'page');
 
             $previousPageUrl = $productsPage->previousPageUrl();
             $nextPageUrl = $productsPage->nextPageUrl();

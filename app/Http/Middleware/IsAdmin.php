@@ -15,9 +15,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $userId = auth()->user()->id;
+        $userRoleId = auth()->user()->role_id;
 
-        if ($userId !== 1) {
+        if ($userRoleId !== 1) {
             return response()->json([
                 'success' => false,
                 'message' => 'You have not permissions to perform this action'

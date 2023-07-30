@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('image_key');
+            $table->string('measurement')->default('unit');
 
             $table->float('price');
 

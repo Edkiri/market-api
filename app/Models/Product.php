@@ -14,7 +14,14 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    protected $fillable = ['name', 'description', 'price', 'category_id', 'image_key'];
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'category_id',
+        'image_key',
+        'measurement'
+    ];
 
     public $timestamps = false;
 }
